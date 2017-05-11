@@ -22,9 +22,9 @@ const getUniques = (data) => {
 export default function reducer(state = {
   events: [],
   // filters: {},
-  filterQuery: "",
-  filterType: "",
-  eventsFiltered: [],
+  // filterQuery: "",
+  // filterType: "",
+  // eventsFiltered: [],
   // uniqueTypes: [],
   unique: {
     types: [],
@@ -50,32 +50,6 @@ export default function reducer(state = {
 
     case "FETCH_EVENTS_REJECTED":
       return {...state, fetching: false, error: action.payload }
-
-    case "FILTER_QUERY":
-      const query = action.payload;
-      if (!query.length) return {...state, filterQuery: "", eventsFiltered: [] }
-
-      const queryFiltered = state.events.filter(event => {
-        if (event.title.toLowerCase().search(query.toLowerCase()) >= 0) {
-          return event
-        }
-      })
-      return {...state, filterQuery: query, eventsFiltered: queryFiltered }
-
-    case "FILTER_TYPE":
-      const type = action.payload;
-      const eventSource = state.filterQuery ? state.eventsFiltered : state.events;
-
-      if (!!state.filterType && type === state.filterType) {
-        return {...state, filterType: "", eventsFiltered: [] }
-      }
-
-      const typeFiltered = eventSource.filter(event => {
-        if (event.type.search(type) >= 0) {
-          return event
-        }
-      })
-      return {...state, filterType: type, eventsFiltered: typeFiltered }
 
     default:
       return state;

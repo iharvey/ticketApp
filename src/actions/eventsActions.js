@@ -9,20 +9,3 @@ export function fetchEvents() {
   }
 }
 
-export function filterQuery(payload) {
-  return function(dispatch) {
-    dispatch({
-      type: "FILTER_QUERY",
-      payload
-    })
-  }
-}
-
-export function filterType(payload) {
-  return function(dispatch) {
-    dispatch({
-      type: "FILTER_TYPE",
-      payload
-    })
-  }
-}

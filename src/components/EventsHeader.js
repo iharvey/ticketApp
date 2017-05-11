@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { filterQuery, filterType } from "../actions/eventsActions";
+import { filter } from "../actions/filterActions"; // filterQuery, filterType,
 import { Input, Button } from 'antd';
 const Search = Input.Search;
 
@@ -11,11 +11,8 @@ const Search = Input.Search;
 })
 
 class EventsTable extends Component {
-  filterQuery(query) {
-    this.props.dispatch(filterQuery(query));
-  }
-  filterType(type) {
-    this.props.dispatch(filterType(type));
+  filter(type) {
+    this.props.dispatch(filter(type));
   }
 
   render() {
@@ -24,18 +21,18 @@ class EventsTable extends Component {
       <Search
       placeholder="input search text"
       style={{ width: 200 }}
-      onSearch={(query) => this.filterQuery(query)}
+      onSearch={(query) => this.filter({query})}
       />
       <div>
         <h3>Event Types</h3>
         {this.props.unique.types.map(type =>
-          <Button key={type} onClick={() => this.filterType(type)}>{type}</Button>
+          <Button key={type} onClick={() => this.filter({type})}>{type}</Button>
         )}
       </div>
       <div>
         <h3>Event Locations</h3>
         {this.props.unique.locales.map(locale =>
-          <Button key={locale} onClick={() => this.filterType(locale)}>{locale}</Button>
+          <Button key={locale} onClick={() => this.filter({locale})}>{locale}</Button>
         )}
       </div>
     </div>

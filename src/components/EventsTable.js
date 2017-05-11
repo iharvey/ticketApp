@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {fetchEvent} from "../actions/eventActions";
 import {fetchEvents} from "../actions/eventsActions";
+import {filterEvents, filter} from "../actions/filterActions";
 import { Table } from 'antd';
 
 const columns = [{
@@ -28,9 +29,8 @@ const columns = [{
 @connect((store) => {
   return {
     events: store.events.events,
-    eventsFiltered: store.events.eventsFiltered,
-    // filterQuery: store.events.filterQuery,
-    // filterType: store.events.filterType
+    eventsFiltered: store.filter.eventsFiltered,
+    filters: store.filter.filters,
   };
 })
 export default class EventsTable extends Component {
@@ -41,7 +41,8 @@ export default class EventsTable extends Component {
     this.props.dispatch(fetchEvent(row.id));
   }
   getDataSource(props) {
-    return props.eventsFiltered.length ? props.eventsFiltered : props.events;
+    return props.events
+    // return props.eventsFiltered.length ? props.eventsFiltered : props.events;
   }
   render() {
     return <div>
