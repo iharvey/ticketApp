@@ -18,14 +18,8 @@ const getUniques = (data) => {
   }, { types: [], locales: [] })
 }
 
-
 export default function reducer(state = {
   events: [],
-  // filters: {},
-  // filterQuery: "",
-  // filterType: "",
-  // eventsFiltered: [],
-  // uniqueTypes: [],
   unique: {
     types: [],
     locales: []
