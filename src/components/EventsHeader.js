@@ -6,7 +6,7 @@ const Search = Input.Search;
 
 @connect((store) => {
   return {
-    uniqueTypes: store.events.uniqueTypes
+    unique: store.events.unique
   };
 })
 
@@ -27,8 +27,15 @@ class EventsTable extends Component {
       onSearch={(query) => this.filterQuery(query)}
       />
       <div>
-        {this.props.uniqueTypes.map(type =>
+        <h3>Event Types</h3>
+        {this.props.unique.types.map(type =>
           <Button key={type} onClick={() => this.filterType(type)}>{type}</Button>
+        )}
+      </div>
+      <div>
+        <h3>Event Locations</h3>
+        {this.props.unique.locales.map(locale =>
+          <Button key={locale} onClick={() => this.filterType(locale)}>{locale}</Button>
         )}
       </div>
     </div>

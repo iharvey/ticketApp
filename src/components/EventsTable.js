@@ -33,7 +33,6 @@ const columns = [{
     // filterType: store.events.filterType
   };
 })
-
 export default class EventsTable extends Component {
   componentWillMount() {
     this.props.dispatch(fetchEvents());
