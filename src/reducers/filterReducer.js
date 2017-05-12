@@ -1,6 +1,5 @@
 export default function reducer(state = {
   filters: {},
-  eventsFiltered: [],
 }, action) {
   let newFilters = {...state.filters };
 
@@ -9,18 +8,18 @@ export default function reducer(state = {
       if (state.filters.hasOwnProperty(Object.keys(action.payload))) {
         switch (Object.keys(action.payload)[0]) {
           case "query":
-            // null query
             if (action.payload.query.length === 0) {
+              // null query
               delete newFilters.query;
               return {...state, filters: {...newFilters } }
-              // valid query
             } else {
+              // valid query
               return {...state, filters: {...state.filters, query: action.payload.query } }
             }
 
           case "type":
-            // previously selected element, clear the query
             if (!!state.filters.type && action.payload.type === state.filters.type) {
+              // previously selected element, clear the query
               delete newFilters.type;
               return {...state, filters: {...newFilters } }
             } else {
@@ -29,8 +28,8 @@ export default function reducer(state = {
             }
 
           case "locale":
-            // previously selected element, clear the query
             if (!!state.filters.locale && action.payload.locale === state.filters.locale) {
+              // previously selected element, clear the query
               delete newFilters.locale;
               return {...state, filters: {...newFilters } }
             } else {
@@ -49,5 +48,4 @@ export default function reducer(state = {
     default:
       return state;
   }
-
 }

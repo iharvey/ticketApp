@@ -41,16 +41,12 @@ const columns = [{
 @connect((store) => {
   return {
     events: store.events.events,
-    eventsFiltered: store.filter.eventsFiltered,
     filters: store.filter.filters,
   };
 })
 export default class EventsTable extends Component {
   componentWillMount() {
     this.props.dispatch(fetchEvents());
-  }
-  eventRowClick(row) {
-    this.props.dispatch(fetchEvent(row.id));
   }
   getMessages(props) {
     let filterMessages = [...this.props.events];
@@ -88,5 +84,3 @@ export default class EventsTable extends Component {
           </div>
         }
   }
-
-// onRowClick={ this.eventRowClick.bind(this)
