@@ -1,16 +1,18 @@
-// TODO - get unique all
+// Get all unique locations and event types
 const getUniques = (data) => {
   return data.reduce((acc, curr) => {
+    // unique event types
     if (acc.types.indexOf(curr.type) < 0) {
       acc.types = [...acc.types, curr.type]
     }
+    // quick sanitisation of location string
     let trimVenue = curr.venue.trim();
     if (trimVenue.substr(-1) === ",") {
       trimVenue.slice(trimVenue.length - 1)
     }
     trimVenue = trimVenue.split(', ');
     trimVenue = trimVenue[trimVenue.length - 1];
-
+    // unique location names
     if (acc.locales.indexOf(trimVenue) < 0) {
       acc.locales = [...acc.locales, trimVenue]
     }

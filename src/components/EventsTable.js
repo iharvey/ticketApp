@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { fetchEvent } from "../actions/eventActions";
 import { fetchEvents } from "../actions/eventsActions";
-import { filterEvents, filter } from "../actions/filterActions";
+import { Link } from 'react-router-dom'
+import { Button } from 'antd';
+import { EventModal } from "./EventModal";
 import { Table } from 'antd';
 
 const columns = [{
@@ -23,8 +25,19 @@ const columns = [{
   key: 'date',
 }, {
   title: 'Venue',
-  dataIndex: 'type',
-  key: 'type',
+  dataIndex: 'venue',
+  key: 'venue',
+}, {
+ title: 'View',
+  key: 'view',
+  dataIndex: 'id',
+  render: (id) => (
+    <Link to={`/e/${id}`}>
+      <Button>
+        View
+      </Button>
+    </Link>
+  )
 }];
 
 @connect((store) => {
@@ -34,7 +47,6 @@ const columns = [{
     filters: store.filter.filters,
   };
 })
-
 export default class EventsTable extends Component {
   componentWillMount() {
     this.props.dispatch(fetchEvents());
@@ -44,35 +56,39 @@ export default class EventsTable extends Component {
   }
   getMessages(props) {
     let filterMessages = [...this.props.events];
-    for (let property in this.props.filters) {
-      filterMessages = filterMessages.filter(event => {
-        if (property === "query") {
-          if (event.title.toLowerCase().search(this.props.filters[property].toLowerCase()) >= 0) {
-            return event
+    (() => {
+      for (let property in this.props.filters) {
+        filterMessages = filterMessages.filter(event => {
+          if (property === "query") {
+            if (event.title.toLowerCase().search(this.props.filters[property].toLowerCase()) >= 0) {
+              return event
+            }
           }
-        }
-        if (property === "type") {
-          if (event.type.search(this.props.filters[property]) >= 0) {
-            return event
+          if (property === "type") {
+            if (event.type.search(this.props.filters[property]) >= 0) {
+              return event
+            }
           }
-        }
-        if (property === "locale") {
-          if (event.venue.search(this.props.filters[property]) >= 0) {
-            return event
+          if (property === "locale") {
+            if (event.venue.search(this.props.filters[property]) >= 0) {
+              return event
+            }
           }
-        }
-      })
-    }
+        })
+      }
+    })
     return filterMessages;
   }
 
   render() {
     return <div>
-      <Table
-        dataSource={ this.getMessages(this.props) }
-        columns={ columns }
-        rowKey="id"
-        onRowClick={ this.eventRowClick.bind(this) }
-    /> </div>
+             <Table
+              dataSource={ this.getMessages(this.props) }
+              columns={ columns }
+              rowKey="id"
+            />
+          </div>
+        }
   }
-}
+
+// onRowClick={ this.eventRowClick.bind(this)
