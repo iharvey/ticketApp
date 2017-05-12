@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import { fetchEvent } from "../actions/eventActions";
 import { fetchEvents } from "../actions/eventsActions";
 import { Link } from 'react-router-dom'
-import { Button } from 'antd';
-import { EventModal } from "./EventModal";
-import { Table } from 'antd';
+import { Button, Table } from 'antd';
 
 const columns = [{
   title: 'Image',
@@ -56,7 +54,6 @@ export default class EventsTable extends Component {
   }
   getMessages(props) {
     let filterMessages = [...this.props.events];
-    (() => {
       for (let property in this.props.filters) {
         filterMessages = filterMessages.filter(event => {
           if (property === "query") {
@@ -76,7 +73,6 @@ export default class EventsTable extends Component {
           }
         })
       }
-    })
     return filterMessages;
   }
 
