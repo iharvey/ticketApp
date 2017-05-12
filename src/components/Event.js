@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { fetchEvent } from "../actions/eventActions"; // filterQuery, filterType,
+import { fetchEvent } from "../actions/eventActions";
 import moment from "moment";
 
 @connect((store) => {

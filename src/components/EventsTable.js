@@ -54,6 +54,7 @@ export default class EventsTable extends Component {
   }
   getMessages(props) {
     let filterMessages = [...this.props.events];
+
       for (let property in this.props.filters) {
         filterMessages = filterMessages.filter(event => {
           if (property === "query") {
@@ -73,6 +74,7 @@ export default class EventsTable extends Component {
           }
         })
       }
+
     return filterMessages;
   }
 
