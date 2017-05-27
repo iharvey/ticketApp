@@ -5,6 +5,6 @@ export function fetchEvent(id) {
     dispatch({
       type: "FETCH_EVENT",
       payload: axios.get(`http://tech-test.egtools.co.uk/events/${id}`)
-    })
-  }
+    });
+  };
 }

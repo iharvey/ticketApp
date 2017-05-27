@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchEvent } from "../actions/eventActions";
-import moment from "moment";
+// import moment from "moment";
 
-@connect((store) => {
+@connect(store => {
   return {
-    event: store.event,
+    event: store.event
   };
 })
 export default class Event extends Component {
@@ -13,7 +13,7 @@ export default class Event extends Component {
     this.props.dispatch(fetchEvent(this.props.match.params.eventID));
   }
   cleanHTML(src) {
-    var div = document.createElement('div');
+    var div = document.createElement("div");
     div.innerHTML = src;
     return div.textContent;
   }
@@ -28,9 +28,7 @@ export default class Event extends Component {
         <p>Event Date: {this.props.event.event.date}</p>
         <p>Event Type: {this.props.event.event.type}</p>
         <hr />
-        <img style={{ width: 200 }}
-          src={this.props.event.event.image}
-          alt={this.props.event.event.information_title} />
+        <img style={{ width: 200 }} src={this.props.event.event.image} alt={this.props.event.event.information_title} />
         <div>{this.cleanHTML(this.props.event.event.information_description)}</div>
         <hr />
         <a href={this.props.event.event.url}>View More</a>
@@ -38,4 +36,3 @@ export default class Event extends Component {
     );
   }
 }
-

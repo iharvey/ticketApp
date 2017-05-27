@@ -1,7 +1,10 @@
-export default function reducer(state = {
-  filters: {},
-}, action) {
-  let newFilters = {...state.filters };
+export default function reducer(
+  state = {
+    filters: {}
+  },
+  action
+) {
+  let newFilters = { ...state.filters };
 
   switch (action.type) {
     case "FILTER":
@@ -11,38 +14,35 @@ export default function reducer(state = {
             if (action.payload.query.length === 0) {
               // null query
               delete newFilters.query;
-              return {...state, filters: {...newFilters } }
+              return { ...state, filters: { ...newFilters } };
             } else {
               // valid query
-              return {...state, filters: {...state.filters, query: action.payload.query } }
+              return { ...state, filters: { ...state.filters, query: action.payload.query } };
             }
 
           case "type":
             if (!!state.filters.type && action.payload.type === state.filters.type) {
               // previously selected element, clear the query
               delete newFilters.type;
-              return {...state, filters: {...newFilters } }
+              return { ...state, filters: { ...newFilters } };
             } else {
-              // previously selected element, clear the query
-              return {...state, filters: {...state.filters, type: action.payload.type } }
+              return { ...state, filters: { ...state.filters, type: action.payload.type } };
             }
 
           case "locale":
             if (!!state.filters.locale && action.payload.locale === state.filters.locale) {
               // previously selected element, clear the query
               delete newFilters.locale;
-              return {...state, filters: {...newFilters } }
+              return { ...state, filters: { ...newFilters } };
             } else {
-              // previously selected element, clear the query
-              return {...state, filters: {...state.filters, locale: action.payload.locale } }
+              return { ...state, filters: { ...state.filters, locale: action.payload.locale } };
             }
           default:
             return state;
         }
-
       } else {
         // filter does not exist, add
-        return {...state, filters: {...state.filters, ...action.payload } }
+        return { ...state, filters: { ...state.filters, ...action.payload } };
       }
 
     default:

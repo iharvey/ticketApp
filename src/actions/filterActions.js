@@ -3,6 +3,6 @@ export function filter(payload) {
     dispatch({
       type: "FILTER",
       payload
-    })
-  }
+    });
+  };
 }
