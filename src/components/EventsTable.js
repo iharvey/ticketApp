@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-// import { fetchEvent } from "../actions/eventActions";
-import { fetchEvents } from "../actions/eventsActions";
 import { Link } from "react-router-dom";
 import { Button, Table } from "antd";
 
@@ -41,16 +38,11 @@ const columns = [
   }
 ];
 
-@connect(store => {
-  return {
-    events: store.events.events,
-    filters: store.filter.filters
-  };
-})
 export default class EventsTable extends Component {
   componentWillMount() {
-    this.props.dispatch(fetchEvents());
+    this.props.doFetch();
   }
+
   getMessages(props) {
     let filterMessages = [...this.props.events];
 
@@ -72,7 +64,7 @@ export default class EventsTable extends Component {
               return event;
             }
           }
-          return null
+          return null;
         });
       }
     }
