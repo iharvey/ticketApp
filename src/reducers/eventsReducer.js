@@ -9,7 +9,7 @@ const getUniques = data => {
       // quick sanitisation of location string
       let trimVenue = curr.venue.trim();
       if (trimVenue.substr(-1) === ",") {
-        trimVenue.slice(trimVenue.length - 1);
+        trimVenue = trimVenue.slice(trimVenue.length - 1);
       }
       trimVenue = trimVenue.split(", ");
       trimVenue = trimVenue[trimVenue.length - 1];

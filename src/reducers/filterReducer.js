@@ -21,7 +21,7 @@ export default function reducer(
             }
 
           case "type":
-            if (!!state.filters.type && action.payload.type === state.filters.type) {
+            if (action.payload.type === state.filters.type) {
               // previously selected element, clear the query
               delete newFilters.type;
               return { ...state, filters: { ...newFilters } };
@@ -30,7 +30,7 @@ export default function reducer(
             }
 
           case "locale":
-            if (!!state.filters.locale && action.payload.locale === state.filters.locale) {
+            if (action.payload.locale === state.filters.locale) {
               // previously selected element, clear the query
               delete newFilters.locale;
               return { ...state, filters: { ...newFilters } };
