@@ -7,10 +7,10 @@ export default function reducer(
   let newFilters = { ...state.filters };
 
   switch (action.type) {
-    case "FILTER":
+    case 'FILTER':
       if (state.filters.hasOwnProperty(Object.keys(action.payload))) {
         switch (Object.keys(action.payload)[0]) {
-          case "query":
+          case 'query':
             if (action.payload.query.length === 0) {
               // null query
               delete newFilters.query;
@@ -20,7 +20,7 @@ export default function reducer(
               return { ...state, filters: { ...state.filters, query: action.payload.query } };
             }
 
-          case "type":
+          case 'type':
             if (action.payload.type === state.filters.type) {
               // previously selected element, clear the query
               delete newFilters.type;
@@ -29,7 +29,7 @@ export default function reducer(
               return { ...state, filters: { ...state.filters, type: action.payload.type } };
             }
 
-          case "locale":
+          case 'locale':
             if (action.payload.locale === state.filters.locale) {
               // previously selected element, clear the query
               delete newFilters.locale;

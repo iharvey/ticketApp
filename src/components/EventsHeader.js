@@ -1,37 +1,47 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Input, Button } from "antd";
+import React, { Component } from 'react';
+import Button from 'antd/lib/button';
+import Input from 'antd/lib/input';
 const Search = Input.Search;
 
 class EventsTable extends Component {
   render() {
-    var buttonStyle = {
-      margin: 4
+    const { onFilter, unique, filters } = this.props;
+    const buttonStyle = {
+      margin: 4,
+    };
+    const inputStyle = {
+      width: '200px',
     };
 
     return (
       <div>
         <h3>Event Query</h3>
-        <Search
-          placeholder="input search text"
-          style={{ width: 200 }}
-          onSearch={query => this.props.onFilter({ query })}
-        />
+        <Search placeholder='input search text' style={inputStyle} onSearch={query => onFilter({ query })} />
         <div>
           <h3>Event Types</h3>
-          {this.props.unique.types.map(type => (
-            <Button key={type} onClick={() => this.props.onFilter({ type })} style={buttonStyle}>
+          {unique.types.map(type =>
+            <Button
+              type={type === filters.type ? 'primary' : null}
+              key={type}
+              onClick={() => onFilter({ type })}
+              style={buttonStyle}
+            >
               {type}
-            </Button>
-          ))}
+            </Button>,
+          )}
         </div>
         <div>
           <h3>Event Locations</h3>
-          {this.props.unique.locales.map(locale => (
-            <Button key={locale} onClick={() => this.props.onFilter({ locale })} style={buttonStyle}>
+          {unique.locales.map(locale =>
+            <Button
+              type={locale === filters.locale ? 'primary' : null}
+              key={locale}
+              onClick={() => onFilter({ locale })}
+              style={buttonStyle}
+            >
               {locale}
-            </Button>
-          ))}
+            </Button>,
+          )}
         </div>
       </div>
     );

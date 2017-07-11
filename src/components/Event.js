@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { fetchEvent } from "../actions/eventActions";
-// import moment from "moment";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchEvent } from 'actions';
+
 
 @connect(store => {
   return {
@@ -13,7 +13,7 @@ export default class Event extends Component {
     this.props.dispatch(fetchEvent(this.props.match.params.eventID));
   }
   cleanHTML(src) {
-    var div = document.createElement("div");
+    var div = document.createElement('div');
     div.innerHTML = src;
     return div.textContent;
   }

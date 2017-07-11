@@ -1,3 +1,4 @@
 {
-  "esversion": 6
+  "esversion": 6,
+  "plugins": [["import", { "libraryName": "antd" }]]
 }

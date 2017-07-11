@@ -8,10 +8,10 @@ const getUniques = data => {
       }
       // quick sanitisation of location string
       let trimVenue = curr.venue.trim();
-      if (trimVenue.substr(-1) === ",") {
+      if (trimVenue.substr(-1) === ',') {
         trimVenue = trimVenue.slice(trimVenue.length - 1);
       }
-      trimVenue = trimVenue.split(", ");
+      trimVenue = trimVenue.split(', ');
       trimVenue = trimVenue[trimVenue.length - 1];
       // unique location names
       if (acc.locales.indexOf(trimVenue) < 0) {
@@ -19,7 +19,7 @@ const getUniques = data => {
       }
       return acc;
     },
-    { types: [], locales: [] }
+    { types: [], locales: [] },
   );
 };
 
@@ -28,28 +28,28 @@ export default function reducer(
     events: [],
     unique: {
       types: [],
-      locales: []
+      locales: [],
     },
     fetching: false,
     fetched: false,
-    error: null
+    error: null,
   },
-  action
+  action,
 ) {
   switch (action.type) {
-    case "FETCH_EVENTS_PENDING":
+    case 'FETCH_EVENTS_PENDING':
       return { ...state, fetching: true };
 
-    case "FETCH_EVENTS_FULFILLED":
+    case 'FETCH_EVENTS_FULFILLED':
       return {
         ...state,
         fetching: false,
         fetched: true,
         events: action.payload.data,
-        unique: getUniques(action.payload.data)
+        unique: getUniques(action.payload.data),
       };
 
-    case "FETCH_EVENTS_REJECTED":
+    case 'FETCH_EVENTS_REJECTED':
       return { ...state, fetching: false, error: action.payload };
 
     default:

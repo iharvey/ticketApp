@@ -19,6 +19,14 @@
         "no-unreachable": "warn",
         "no-unused-vars": "warn",
         "constructor-super": "warn",
-        "valid-typeof": "warn"
+        "valid-typeof": "warn",
+        "box-model": 0,
+        "object-curly-spacing": ["error", "always"],
+        "no-trailing-spaces": ["error"],
+        "semi": 1,
+        "space-infix-ops": ["error"],
+        "quotes" : [1, "single", {"allowTemplateLiterals": true}],
+        "jsx-quotes" : [1, "prefer-single"],
+        "no-multiple-empty-lines" : [1, { "max": 3} ]
     }
 }

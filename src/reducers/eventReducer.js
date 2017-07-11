@@ -3,18 +3,18 @@ export default function reducer(
     event: {},
     fetching: false,
     fetched: false,
-    error: null
+    error: null,
   },
-  action
+  action,
 ) {
   switch (action.type) {
-    case "FETCH_EVENT_PENDING":
+    case 'FETCH_EVENT_PENDING':
       return { ...state, fetching: true };
 
-    case "FETCH_EVENT_FULFILLED":
+    case 'FETCH_EVENT_FULFILLED':
       return { ...state, fetching: false, fetched: true, event: action.payload.data };
 
-    case "FETCH_EVENT_REJECTED":
+    case 'FETCH_EVENT_REJECTED':
       return { ...state, fetching: false, error: action.payload };
 
     default:
